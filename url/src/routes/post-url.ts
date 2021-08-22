@@ -4,7 +4,7 @@ import { Url } from '../models/url';
 
 const router = express.Router();
 
-router.post('/api/url/', 
+router.post('/api/url/:userId', 
     async (req:Request, res:Response) =>{
         const {
             longUrl
@@ -12,7 +12,7 @@ router.post('/api/url/',
 
         const shortUrl = 'abcde';
         const urlCode = 'abcde';
-        const userId = 'dsfssfd';
+        const userId = req.params.userId;
 
         let url = new Url({
             longUrl,

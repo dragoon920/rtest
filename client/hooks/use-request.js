@@ -3,13 +3,15 @@ import { useState } from 'react';
 
 const useRequest = ({url, method, body, onSuccess}) => {
     const [errors, setErrors] = useState(null);
-
+    const [responseData, setResponseData] = useState(null)
     const doRequest = async () => {
         try {
             setErrors(null);
             const response = await axios[method] (url, body);
+            console.log(response)
             if (onSuccess) {
                 onSuccess(response.data);
+                setResponseData(response.data)
             }
         } catch (err) {
             setErrors(
@@ -24,7 +26,7 @@ const useRequest = ({url, method, body, onSuccess}) => {
             )
         }
     }
-    return {doRequest, errors}
+    return {doRequest, errors, responseData}
 };
 
 
